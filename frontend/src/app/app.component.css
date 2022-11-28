@@ -1,0 +1,101 @@
+
+body {
+    font-style: normal;
+    font-weight: 300;
+    background-color: #F8F8F8;
+    color: #3f3f3f;
+    font-size: 17px;
+    font-family: "Poppins","Amiri", "Times New Roman", serif;
+}
+
+.white-bg{
+    background: white;
+}
+
+.logo{
+    float:left;
+    margin: -3px 3px 0 10px ;
+    width:55px;
+    height:30px;
+}
+.menu-link {
+    color: #414141;
+    font-size: 18px;
+} 
+.menu-item.menu-item-active > .menu-link{
+    color: #1875cb;
+    font-weight: 400;
+}
+/* .header{
+    border-bottom: 1px solid #d9d9d9;
+} */
+.title{
+    color: #3f3f3f;
+    font-size: 20px;
+    font-weight: 400;
+}
+.topbar-item{
+    padding: 0.65rem 1.1rem;
+    font-size: 14px;
+}
+
+.header-logo{
+    display: none;
+}
+
+#kt_content {
+    position: relative;
+    top: 0px;
+}
+#kt_header_mobile {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 97;
+    height: 55px;
+    min-height: 55px;
+}
+
+p{
+    text-align: justify;
+}
+
+@media (min-width: 1281px) {
+    .header-logo{
+        display: block;
+        width: 1000px;
+        margin-top: 15px;
+        margin-left: 10px;
+    }
+    #kt_content {
+        position: relative;
+        top: 80px;
+    }
+    
+}
+
+.header.header-fixed {
+    height: 55px;
+    box-shadow: 0 0 40px 0 rgb(82 63 105 / 10%);
+}
+  /* 
+    ##Device = Laptops, Desktops
+    ##Screen = B/w 1025px to 1280px
+  */
+@media (min-width: 1025px) and (max-width: 1280px) {
+    .header-logo{
+        display: block;
+        width: 1000px;
+        margin-top: 20px;
+        margin-left: 10px;
+    }
+    #kt_content {
+        position: relative;
+        top: 80px;
+    }     
+    .container, .container-fluid, .container-sm, .container-md, .container-lg, .container-xl, .container-xxl {
+        padding: 0 35px;
+    }
+}
+  

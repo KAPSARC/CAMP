@@ -1,0 +1,81 @@
+<!--begin::Header Mobile-->
+<div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed">
+  <!--begin::Logo-->
+  <img class="h-40px logo" alt="Logo" src="assets/logo.svg" />
+  <!--begin::Logo-->
+  <a href="./">
+      <span class="title">CAMP</span>
+  </a>
+  <!--end::Logo-->
+  <!--begin::Toolbar-->
+  <div class="d-flex align-items-center">
+      <!--begin::Header Menu Mobile Toggle-->
+      <button class="btn p-0 burger-icon text-primary ml-5" (click)="burgerOpen=true" id="kt_header_mobile_toggle">
+      <span></span>
+      </button>
+      <!--end::Header Menu Mobile Toggle-->
+  </div>
+  <!--end::Toolbar-->
+</div>
+<!--end::Header Mobile-->
+
+
+
+
+<div class="d-flex flex-column flex-root white-bg">
+  <!--begin::Page-->
+  <div class="d-flex flex-row flex-column-fluid page">
+
+      <!--begin::Wrapper-->
+      <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+      
+      <!--begin::Header-->
+      <div id="kt_header" class="header header-fixed">
+          <div class="header-logo">
+          <a href="./">
+              <img alt="Logo" src="assets/logo.svg" class="h-30px logo">
+              <h4 class="title">CAMP Sankey</h4>
+          </a>
+          </div>  
+
+          <!--begin::Container-->
+          <div class="container-fluid d-flex align-items-stretch justify-content-between">
+          <div></div>
+          <!--begin::Header Menu Wrapper-->
+          <div [ngClass]="{'header-menu-wrapper-on' : burgerOpen == true }" class="header-menu-wrapper header-menu-wrapper-left" id="kt_header_menu_wrapper">
+              <!--begin::Header Menu-->
+              <div id="kt_header_menu" class="header-menu header-menu-mobile header-menu-layout-default">
+                  <!--begin::Header Nav-->
+                  <ul class="menu-nav">
+                      <li class="menu-item menu-item-submenu menu-item-rel ">
+                          <a href="" target="_blank" class="menu-link">
+                          <span class="font-size-h5">About</span>
+                          <i class="menu-arrow text-white"></i>
+                          </a>
+                      </li>
+                      
+                  </ul>
+                  <!--end::Header Nav-->
+              </div>
+              <!--end::Header Menu-->
+          </div>
+          <!--end::Topbar-->
+          </div>
+          <!--end::Container-->
+      </div>
+      <!--end::Header-->
+      <!--begin::Content-->
+      <div class="content d-flex flex-column flex-column-fluid p-0 white-bg" id="kt_content">
+          <!--begin::Subheader-->
+          <!--end::Subheader-->
+          <!--begin::Entry-->
+              <router-outlet></router-outlet>
+          <!--end::Entry-->
+      </div>
+      <!--end::Content-->
+      
+      </div>
+      <!--end::Wrapper-->
+  </div>
+<!--end::Page-->
+</div>

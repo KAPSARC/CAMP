@@ -1,0 +1,255 @@
+
+<script src="//cdn.amcharts.com/lib/4/core.js"></script>
+<script src="//cdn.amcharts.com/lib/4/charts.js"></script>
+<script src="//cdn.amcharts.com/lib/4/themes/animated.js"></script>
+
+<!-- <div class="modal fade" id="resultModal" tabindex="-1" role="dialog" aria-labelledby="resultModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+          <h5 lass="modal-title">xx</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <i aria-hidden="true" class="ki ki-close"></i>
+          </button>
+      </div>
+      <div class="modal-body">
+        
+        <p>{{loadingtext}}</p>
+        
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)='displayChart()' data-dismiss="modal">Display</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+
+<div *ngIf="loading" class="loading">
+  <div class="card card-custom gutter-b  shadow p-3 bg-white rounded">
+    <div class="card-body">
+      <div class="text-center">
+        <h3>Loading .. </h3>
+        <br>
+        <div id="loadingSpinner"></div>
+        
+      </div>
+    </div>
+   </div>
+  
+</div>
+
+
+<!-- Inputs/ Outputs -->
+<div class="row " style="margin-top:-10px;">
+  <!-- Inputs -->
+  <div class="col-3 border-secondary" >
+    <div class="row" >
+      <div class="col-4" >
+        <h4>Inputs</h4>
+      </div>
+      <!-- reset -->
+      <div class="col-8 text-right">
+        <a (click)="reset()" href="javascript:;" class="btn btn-text-primary">
+          RESET
+        </a> 
+        <a (click)="getOutput()" href="javascript:;" class="btn btn-text-primary">
+          Run 
+        </a>
+        <a (click)="displayChart()" href="javascript:;" class="btn btn-text-primary">
+          Display 
+        </a>
+
+
+
+
+        <!-- <button id="run" ng-click="getOutput()"  class="btn btn-icon btn-sm custom-btn mr-1" type="button" data-toggle="modal" data-target="#resultModal" >
+          <i class="la la-undo-alt icon-md text-blue"></i> Run
+        </button> -->
+
+
+
+      </div>
+    </div>
+    <div class="card card-custom gutter-b">
+      <div class="input-scroll">
+        <div class="accordion accordion-toggle-arrow" id="accordionInput">
+          <ng-container *ngFor="let inp of inputFieldsGrouped,let i = index">
+            <div class="card" >
+              <div class="card-header">
+                <div class="card-title collapsed"  data-toggle="collapse" [attr.data-target]="'#inputcollapse'+i+1">
+                  {{inp.group}}
+                </div>
+                
+              </div>
+              <!--begin::Form-->
+              <form ngNativeValidate>
+                
+                <div [id]="'inputcollapse'+i+1" class="collapse" [ngClass]="{'show' : i == 0 }" data-parent="#accordionInput">
+                  <div class="card-body" *ngFor="let header of inp.items2,let j = index" >
+                    
+                      <!-- level0 -->
+                      <div class="row ml-0" *ngIf="header.group">
+                        <div class="col-12">
+                          <label class="">
+                            {{header.group}}&nbsp;
+                          </label>
+                        </div>
+                      </div>
+
+                      <!-- header -->
+                      <ng-container *ngFor="let header2 of inp.items3,let x = index">
+                          <ng-container *ngFor="let row of header2.items, let z = index">
+                            <ng-container *ngIf="row.level0 == header.group">
+                                <div class="form-group">
+                                <!-- inputs -->
+                                <div class="row ">
+                                  <div class="col-7">
+                                    <!-- label -->
+                                    <label>{{row.input}}</label>
+                                  </div>
+                                  
+                                  <!-- input -->
+                                  <div class="col-5">
+                                  
+                                      <select *ngIf="row.type=='option'" (change)="onInputChange($event, row)" class="form-control"
+                                      id="input_{{row.id}}">
+                                      
+                                        <option *ngFor="let option of row.condition" [selected]="option == row.value">{{option}}</option>
+                                      </select>
+
+                                  </div>
+                                
+                                </div>
+
+                                
+                                <div class="row ml-0" *ngIf="row.type=='integer' || row.type=='double'">
+                                  <div class="col-7"></div>
+                                  <div class="col-5">
+                                    <span [ngClass]="(row.value<row.condition.min[1] || row.value>row.condition.max[1])?'text-danger':'text-muted'" class="form-text">
+                                      Value range: {{row.condition.min[1]}} - {{row.condition.max[1]}}.
+                                  </span>
+
+                                  </div>
+
+                                </div>
+                              </div>
+                            </ng-container>
+                          </ng-container>
+                          
+                      </ng-container>
+                      <!-- <div  class="separator separator-solid separator-border-1"></div> -->
+                  </div>
+                </div>
+              </form>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Outputs -->
+
+  <div class="col-9 border-secondary">
+    <div class="row">
+      <div class="col-12">
+        <h4>Visualization</h4>
+      </div>
+    </div>
+    <div class="col-12 pl-2">
+      <div class="input-scroll">
+        <div class="accordion" id="accordionOutput">
+          <!-- <ng-container *ngFor="let inp of inputFieldsGrouped,let i = index"> -->
+            <div class="card card-custom gutter-b" >
+              <div class="card-header">
+                <div class="card-title">
+                  {{title}}
+                </div>
+              </div>
+              
+              <div id="output_charts" class="card-body h-100" style="width: 100%;display:block" >
+                
+                <h6 class="p-2">
+                  Sector to emission
+                </h6>
+                <div id="chart_sectordata" style="width: 100%; min-height: 650px;"></div>
+                <div  class="separator separator-solid separator-border-1"></div>
+                
+                <h6 class="p-2">
+                  Subsector to emission
+                </h6>
+                <div id="chart_subsectordata" style="width: 100%; min-height: 1500px"></div>
+                <div  class="separator separator-solid separator-border-1"></div>
+                
+                <h6 class="p-2">
+                  Technology to emission
+                </h6>
+                <div id="chart_technologydata" style="width: 100%; min-height: 2000px"></div>
+                <div class="separator separator-solid separator-border-1"></div>
+                
+                <h6 class="p-2">
+                  Full sankey
+                </h6>
+                <div id="chart_sankeydata" style="width: 100%; min-height: 3000px;"></div>
+                
+
+              </div>
+              
+            </div>
+          <!-- </ng-container> -->
+        </div>
+      </div>
+      
+    </div>
+        <!-- <div class="text-center">{{title}}</div> 
+        <div id="chart_sankeydata" style="width: 100%; height: 250%;"></div>
+        <div id="chart_sectordata" style="width: 100%; height: 100%;"></div>
+        <div id="chart_subsectordata" style="width: 100%; height: 110%"></div>
+        <div id="chart_technologydata" style="width: 100%; height: 250%"></div> -->
+
+  </div>
+
+
+
+    <!-- <div *ngIf="!loading">
+      <div class="output-scroll">
+      <div *ngIf="errstatus" class="alert alert-danger mt-10" role="alert">
+        <i class="flaticon-warning"></i> Please enter value within given range.
+      </div>
+      <ng-container *ngIf="!errstatus">
+        <ng-container *ngFor="let output of outputData,let i = index">
+          <div class="row ml-5">
+            <div class="col-12">
+                <h5>{{output.group}}</h5>
+                <div class="row" *ngFor="let row of output.items,let j = index">
+                  <div class="col-6">
+                    {{row.label}}
+                  </div>
+                  <div class="col-6">
+                    <span *ngIf="row.type == 'double'">
+                      <b>{{row.value  | number:'1.2-3'}}</b>
+                    </span>
+                    <span *ngIf="row.type == 'integer'">
+                      <b>{{row.value  | number:'1.0-0'}}</b>
+                    </span>
+                    <span *ngIf="row.type != 'double' && row.type != 'integer'">
+                      <b [ngClass]="{'text-danger' : row.value=='Fail', 'text-green' : row.value=='Pass'}">{{row.value}}</b>
+                    </span>
+                    <span class="text-muted pl-3">{{row.unit}}</span>
+                  </div>
+                  <div  class="separator separator-solid separator-border-1"></div>
+                </div>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+      
+      </div>
+    </div> -->
+</div>
+
+
+  
