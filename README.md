@@ -5,17 +5,17 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Frontend (angular):
 install the prerequisites packages
 ```python
-...\CAMP-PROJECT\frontend> npm install
+...\CAMP-Project\CAMP\frontend> npm install
 ```
 start UI
 ```python
-...\CAMP-PROJECT\frontend> npm start
+...\CAMP-PROJECT\CAMP\frontend> npm start
 http://localhost:4200/model
 ```
 ## Backend 
 
 ```python
-...\CAMP-PROJECT\backend>python app-kcamp.py start
+...\CAMP-PROJECT\CAMP\backend>python app-kcamp.py start
 ```
 
 ### Model:
