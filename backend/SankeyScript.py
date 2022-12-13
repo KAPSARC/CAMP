@@ -724,7 +724,7 @@ if Display == "Sector":
             item1 = {'from': s_, 'to': 'CO2', 'weight': chart_data_df_sector['CO2_GtCO2e'][ind], 'value2': chart_data_df_sector['Percentage'][ind], 'nodeColor':nodecolor}
             item2 = {'from': s_, 'to': 'CH4', 'weight': chart_data_df_sector['CH4_GtCO2e'][ind], 'value2': chart_data_df_sector['Percentage '][ind], 'nodeColor':nodecolor}
             item3 = {'from': s_, 'to': 'N2O', 'weight': chart_data_df_sector['N2O_GtCO2e'][ind], 'value2': chart_data_df_sector['Percentage  '][ind], 'nodeColor':nodecolor}
-
+    
             sector_data.append(item1)
             sector_data.append(item2)
             sector_data.append(item3)
@@ -737,8 +737,8 @@ if Display == "Sector":
             sector_data.append(item1)
             final_data.append(item1)
 
-    with open(path + f'/sector to emission.txt', 'w') as outfile:
-        json.dump(sector_data, outfile)
+    # with open(path + f'/sector to emission.txt', 'w') as outfile:
+    #     json.dump(sector_data, outfile)
 
 
 elif Display == "Subsector":
@@ -775,8 +775,8 @@ elif Display == "Subsector":
             else:
                 continue 
 
-    with open(path + f'/sector to subsector.txt', 'w') as outfile:
-        json.dump(sector_data, outfile)
+    # with open(path + f'/sector to subsector.txt', 'w') as outfile:
+    #     json.dump(sector_data, outfile)
 
     #2- from subsector block to emission block
     for ind, s_ in enumerate(chart_data_df_subsector['Subsector']):
@@ -800,8 +800,8 @@ elif Display == "Subsector":
             subsector_data.append(item1)
             final_data.append(item1)
 
-    with open(path + f'/subsector to emission.txt', 'w') as outfile:
-        json.dump(subsector_data, outfile)
+    # with open(path + f'/subsector to emission.txt', 'w') as outfile:
+    #     json.dump(subsector_data, outfile)
 
 
 elif Display == "Technology":
@@ -839,8 +839,8 @@ elif Display == "Technology":
                 continue 
   
   
-    with open(path + f'/sector to subsector.txt', 'w') as outfile:
-        json.dump(sector_data, outfile)
+    # with open(path + f'/sector to subsector.txt', 'w') as outfile:
+    #     json.dump(sector_data, outfile)
     #END#
 
     #2- from subsector block to technology block
@@ -863,8 +863,8 @@ elif Display == "Technology":
                     final_data.append(item1)
                     break 
 
-    with open(path + f'/subsector to technology.txt', 'w') as outfile:
-        json.dump(subsector_data, outfile)
+    # with open(path + f'/subsector to technology.txt', 'w') as outfile:
+    #     json.dump(subsector_data, outfile)
     #END#
 
     #3- from technology block to emission block
@@ -892,8 +892,8 @@ elif Display == "Technology":
             technology_data.append(item1)
             final_data.append(item1)
 
-    with open(path + f'/technology to emission.txt', 'w') as outfile:
-        json.dump(technology_data, outfile)
+    # with open(path + f'/technology to emission.txt', 'w') as outfile:
+    #     json.dump(technology_data, outfile)
         #END#
 
 
@@ -927,10 +927,8 @@ for ind, s_ in enumerate(chart_data_df_sector['Sector']):
         item1 = {'from': s_, 'to': Gas, 'weight': chart_data_df_sector[Gas + '_GtCO2e'][ind], 'value2': chart_data_df_sector['Percentage'][ind], 'nodeColor':nodecolor}
         sector_data1.append(item1)
 
-with open(path + f'/sector to emission1.txt', 'w') as outfile:
-    json.dump(sector_data1, outfile)
-
-
+# with open(path + f'/sector to emission1.txt', 'w') as outfile:
+#     json.dump(sector_data1, outfile)
 
     
 #2- 
@@ -953,9 +951,8 @@ for ind, s_ in enumerate(chart_data_df_subsector['Subsector']):
         item1 = {'from': s_, 'to': Gas, 'weight': chart_data_df_subsector[Gas + '_GtCO2e'][ind], 'value2': chart_data_df_subsector['Percentage'][ind], 'nodeColor':nodecolor}
         subsector_data1.append(item1)
 
-with open(path + f'/subsector to emission1.txt', 'w') as outfile:
-    json.dump(subsector_data1, outfile)
-
+# with open(path + f'/subsector to emission1.txt', 'w') as outfile:
+#     json.dump(subsector_data1, outfile)
 
 
 #3- 
@@ -979,8 +976,8 @@ for ind, t in enumerate(chart_data_df_tech['Technology']):
         item1 = {'from': t, 'to': Gas, 'weight': chart_data_df_tech[Gas + '_GtCO2e'][ind], 'value2': chart_data_df_tech['Percentage'][ind], 'nodeColor':nodecolor}
         technology_data1.append(item1)
 
-with open(path + f'/technology to emission1.txt', 'w') as outfile:
-    json.dump(technology_data1, outfile)
+# with open(path + f'/technology to emission1.txt', 'w') as outfile:
+#     json.dump(technology_data1, outfile)
     #END#
 
 
@@ -1012,16 +1009,16 @@ jsondata = {}
 #start#
 
 #first draw user selection
-with open(path + f'/sankey chart.txt', 'w') as outfile:
-    json.dump(final_data, outfile)
+# with open(path + f'/sankey chart.txt', 'w') as outfile:
+#     json.dump(final_data, outfile)
 
 #then draw all 3 charts
-with open(path + f'/sector chart.txt', 'w') as outfile:
-    json.dump(sector_data1, outfile)
-with open(path + f'/subsector chart.txt', 'w') as outfile:
-    json.dump(subsector_data1, outfile)
-with open(path + f'/technology chart.txt', 'w') as outfile:
-    json.dump(technology_data1, outfile)
+# with open(path + f'/sector chart.txt', 'w') as outfile:
+#     json.dump(sector_data1, outfile)
+# with open(path + f'/subsector chart.txt', 'w') as outfile:
+#     json.dump(subsector_data1, outfile)
+# with open(path + f'/technology chart.txt', 'w') as outfile:
+#     json.dump(technology_data1, outfile)
 
 with open(DIR_PATH + f'/data.json', 'w') as f:
     jsondata["sankeydata"]= final_data

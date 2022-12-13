@@ -27,7 +27,7 @@ export class ModelComponent implements OnInit {
   chartType: any = 'Line chart';
   errstatus:boolean = false;
   nIntervId: any;
-  chartlist:any=['sankeydata','sectordata', 'subsectordata', 'technologydata']
+  chartlist:any=['sectordata', 'subsectordata', 'technologydata','sankeydata']
 
   constructor(private service: CampService) { }
 
@@ -185,29 +185,26 @@ export class ModelComponent implements OnInit {
       chart.nodeAlign = "bottom";
 
       // Add title
-      // chart.titles.template.fontSize = 20;
-      // chart.titles.create().text = data.title;
       this.title = data.title; 
   
       // Configure links
       var linkTemplate = chart.links.template;
-      linkTemplate.tooltipText = "{fromName} → {toName}: [bold]{value}[/] GtCO2e\n{fromName} contribute [bold]{value2} %[/] in {toName}\n";
+      linkTemplate.fontSize = 20;
+      linkTemplate.tooltipText = " [font-size: 20px]{fromName} → {toName}: [bold font-size: 30px]{value}[/] [font-size: 20px]GtCO2e[/]\n[font-size: 20px]{fromName} contribute [bold font-size: 30px]{value2} [/] [font-size: 20px]% in {toName}[/] ";
       linkTemplate.colorMode = "gradient";
       // linkTemplate.colorMode = "fromNode";
       // linkTemplate.fillOpacity = 1;
       // linkTemplate.strokeOpacity = 1;
-      
-      
-      let nodeTemplate = chart.nodes.template;
-      nodeTemplate.nameLabel.label.truncate = false;
-    // nodeTemplate.nameLabel.label.wrap = true;
-      nodeTemplate.nameLabel.label.fontSize = 14;
-      // nodeTemplate.width = 30;
-      // nodeTemplate.minHeight = 30;
-
       // linkTemplate.tension = 1;
       // linkTemplate.controlPointDistance = 0.1;
       // linkTemplate.fill = am4core.color("#A8C686");
+      
+      let nodeTemplate = chart.nodes.template;
+      nodeTemplate.nameLabel.label.fontSize = 14;
+      nodeTemplate.nameLabel.label.truncate = false;
+      // nodeTemplate.nameLabel.label.wrap = true;
+      // nodeTemplate.width = 30;
+      // nodeTemplate.minHeight = 30;
 
       var hoverState = linkTemplate.states.create("hover");
       hoverState.properties.fillOpacity = 1;
@@ -219,10 +216,6 @@ export class ModelComponent implements OnInit {
       
     }
     
-
-    
-      
-      }
-
+  }
   
 }
