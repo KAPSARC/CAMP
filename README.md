@@ -1,27 +1,36 @@
-# CAMPProject
+# CAMP
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.2.
 
-## Development server
+## Frontend (angular):
+install the prerequisites packages
+```python
+...\CAMP-Project\CAMP\frontend> npm install
+```
+start UI
+```python
+...\CAMP-PROJECT\CAMP\frontend> npm start
+http://localhost:4200/model
+```
+## Backend 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+```python
+...\CAMP-PROJECT\CAMP\backend>python app-kcamp.py start
+```
 
-## Code scaffolding
+### Model:
+backend > input
+ * Country and Global folders contain CEDS database
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+backend > models
+`model-file-camp-sankey.xlsx`
+ * this excel was created to be used by the user to enter inputs (manual run)
+ * now, app sheet is added to be used by the UI
 
-## Build
+backend
+`SankeyScript.py`
+ * user inputs send to this python to generate output files
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+backend > output
+ * after run `python SankeyScript.py`, the system will generate results in this folder
+ 
