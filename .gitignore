@@ -42,3 +42,4 @@ testem.log
 Thumbs.db
 frontend/.angular
 frontend/node_modules
+frontend/dist
