@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  url:'http://apps.kapsarc.org/campapi/'
+  url:'http://apps.kapsarc.org/campapi'
   // url:'http://127.0.0.1:5551'
 };
 
